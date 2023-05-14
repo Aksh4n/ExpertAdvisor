@@ -893,7 +893,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url("../img/cta-bg.jpg") fixed center center;
+  background: linear-gradient(rgba(40, 58, 90, 0.636), rgba(40, 58, 90, 0.614)), url("../img/Cta.png") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -903,7 +903,6 @@ section {
   font-size: 28px;
   font-weight: 700;
 }
-
 .cta p {
   color: #fff;
 }
@@ -943,11 +942,25 @@ section {
 
 /*--------------------------------------------------------------
 # Portfolio
+
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}
+.modal-body {
+  overflow-y: scroll;
+  max-height: calc(100vh - 200px);
+}
+
 --------------------------------------------------------------*/
 .portfolio #portfolio-flters {
   list-style: none;
   margin-bottom: 20px;
 }
+
 
 .portfolio #portfolio-flters li {
   cursor: pointer;
@@ -1111,7 +1124,6 @@ section {
   transition: 0.5s;
   height: 100%;
 }
-
 .team .member .pic {
   overflow: hidden;
   width: 180px;
