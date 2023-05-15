@@ -24,6 +24,9 @@ class Product(models.Model):
     Eduvideo = models.CharField(max_length=200)
     explain = models.TextField()
     price = models.CharField(null=True, blank=True,max_length=200)
+    date = models.DateField(auto_now_add=True,null=True, blank=True)
+    metaquotes = models.CharField(max_length=200,null=True, blank=True)
+
     def __str__(self):
         return self.name
 
@@ -58,7 +61,23 @@ class Post(models.Model):
             url = self.img1.url
         except:
             url = ''
-        return url     
+        return url   
+
+
+
+
+class Contact(models.Model):
+    subject = models.CharField(max_length=200)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200)
+    message = models.TextField(max_length=1000)
+
+
+
+    def __str__(self):
+
+        return self.subject  
+  
     """
 class Order(models.Model):
     phone = models.CharField(max_length=200)
