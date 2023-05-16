@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from . models import *
 from django.http import JsonResponse
 from . forms import *
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here.def home(request):
 def home(request):
     products = Product.objects.all()
@@ -36,3 +39,45 @@ def contact(request):
             return JsonResponse({
                 'msg': 'Success'
                 })
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
+from .forms import CustomUserCreationForm
+
+def register_user(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            email = form.cleaned_data['email']  # Get the email value from the form
+            user.email = email
+            user.save()
+            return JsonResponse({'msg': 'Success'})
+        else:
+            errors = form.errors.as_json()
+            return JsonResponse({'msg': 'Err', 'errors': errors})
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'msg': 'Success'})
+        else:
+            return JsonResponse({'msg': 'Err', 'error': 'Invalid credentials'})
+
+
+def profile(request):
+    products = Product.objects.all()
+    return render(request, 'profile.html', {'products':products})
+def updateprofile(request):
+	if request.method == "POST":
+		customer = Customer.objects.get(id=request.user.customer.id)
+		form = CustomerForm(request.POST, instance=customer)
+		if form.is_valid:
+			form.save()
+			return JsonResponse({'msg':'Success'})
+		else:
+			return JsonResponse({'msg':'err'})

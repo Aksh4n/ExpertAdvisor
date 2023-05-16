@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -77,25 +79,36 @@ class Contact(models.Model):
     def __str__(self):
 
         return self.subject  
-  
-    """
-class Order(models.Model):
-    phone = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200, null=True)
-    message = models.TextField(max_length=1000)
-    image = models.ImageField()
 
 
+class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    last = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=200 , null=True)
+    email = models.CharField(max_length=200 , null=True)
+    def __str__(self):
+        return str(self.user)
+@receiver(post_save, sender=User)
+def create_customer(sender, instance, created, **kwargs):
+    if created:
+        customer_email = instance.email  # Get the email from the User instance
+        customer = Customer.objects.create(user=instance, email=customer_email)
+        # Create welcome message
+        subject = 'Welcome to Our Website'
+        message_text = f'Dear {customer.user},\n\nThank you for registering with us. We are excited to have you as our customer!\n\nBest regards,\nThe Admin Team'
+        sender = User.objects.get(username='sarsh')  # Assuming 'admin' is the username of the admin user
+        recipient = instance
+
+        welcome_message = Message.objects.create(sender=sender, recipient=recipient, subject=subject, message=message_text)
+post_save.connect(create_customer, sender=User)
+class Message(models.Model):
+    sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
+    recipient = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     def __str__(self):
-
-        return self.name  
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url                    
-        """
+        return self.subject
