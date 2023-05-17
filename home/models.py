@@ -25,10 +25,16 @@ class Product(models.Model):
     TestVideo = models.CharField(max_length=200)
     Eduvideo = models.CharField(max_length=200)
     explain = models.TextField()
-    price = models.CharField(null=True, blank=True,max_length=200)
+    pricebasic = models.CharField(null=True, blank=True,max_length=200)
+    pricepro = models.CharField(null=True, blank=True,max_length=200)
+    pricelifetime = models.CharField(null=True, blank=True,max_length=200)
+    
     date = models.DateField(auto_now_add=True,null=True, blank=True)
     metaquotes = models.CharField(max_length=200,null=True, blank=True)
-
+    backtest1 = models.ImageField(null=True,blank=True)
+    backtest2 = models.ImageField(null=True,blank=True)
+    backtest3 = models.ImageField(null=True,blank=True)
+    backtest4 = models.ImageField(null=True,blank=True)
     def __str__(self):
         return self.name
 

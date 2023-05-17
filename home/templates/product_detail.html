@@ -61,9 +61,130 @@
 
     </div>
 </section><!-- End Portfolio Details Section -->
+<style>
+    .larger-icon {
+        font-size: 24px;
+    }
+</style>
+
+<section id="screenshots" class="padd-section text-center">
+
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center">
+            <h2> Backtest Results</h2>
+            <p class="separator"> Look at some of <strong>{{product.name}}</strong> Backtest results</p>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+
+            <div class="col-lg-3 col-md-6 portfolio-item ">
+                <div class="portfolio-wrap">
+                    <a href="{{product.backtest1.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                        title=""><img src="{{product.backtest1.url}}" class="img-fluid" alt="Backtest EA"></a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 portfolio-item ">
+                <div class="portfolio-wrap">
+                    <a href="{{product.backtest2.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                        title=""><img src="{{product.backtest2.url}}" class="img-fluid" alt="Backtest EA"></a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 portfolio-item ">
+                <div class="portfolio-wrap">
+                    <a href="{{product.backtest3.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                        title=""><img src="{{product.backtest3.url}}" class="img-fluid" alt="Backtest EA"></a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-6 portfolio-item ">
+                <div class="portfolio-wrap">
+                    <a href="{{product.backtest4.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox"
+                        title=""><img src="{{product.backtest4.url}}" class="img-fluid" alt="Backtest EA"></a>
+                </div>
+            </div>
 
 
 
+        </div>
+    </div>
 
+    <hr>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <div class="my-auto">
+              <iframe width="100%" height="100%" src="https://www.youtube.com/embed/z56s6mSs7YY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+</section><!-- End Screenshots Section -->
+
+ <!-- ======= Pricing Section ======= -->
+ <section id="pricing" class="pricing">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Pricing</h2>
+        <p> Choose your plan and recieve your AI Agent  </p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <h3>Basic Plan</h3>
+            <h4><sup>$</sup>{{product.pricebasic}}<span>6 months</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i>Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates</li>
+              <li class="na"><i class="bx bx-x"></i> <span>Licensing for 2 accounts</span></li>
+              <li class="na"><i class="bx bx-x"></i> <span>Priority support</span></li>
+            </ul>
+            <a href="#" class="buy-btn">Get Started</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="box featured">
+            <h3>Pro Plan</h3>
+            <h4><sup>$</sup>{{product.pricepro}}<span>12 month</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i> Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates</li>
+              <li><i class="bx bx-check"></i> Licensing for 2 accounts</li>
+              <li><i class="bx bx-check"></i> Priority support</li>
+            </ul>
+            <a href="#" class="buy-btn">Get Started</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <h3>Lifetime Plan</h3>
+            <h4><sup>$</sup>{{product.pricelifetime}}<span>LifeTime</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i> Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates </li>
+              <li><i class="bx bx-check"></i> Licensing for 2 accounts</li>
+              <li><i class="bx bx-check"></i> Priority support</li>
+            </ul>
+            <a href="#" class="buy-btn">Get Started</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Pricing Section -->
 
 {% endblock content %}
