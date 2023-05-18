@@ -19,14 +19,14 @@ def product(request):
     post = Post.objects.all()
     return render(request, 'Ea.html' , {'products':products , 'cat':blog_category , 'posts': post})
 
+import json
+
 def product_detail(request, product_id):
     products = Product.objects.all()
-
     product = get_object_or_404(Product, id=product_id)
-    context = {'product': product , 'products':products}
+    inputs = json.loads(product.inputs or '{}').items()
+    context = {'product': product, 'inputs': inputs , 'products':products}
     return render(request, 'product_detail.html', context)
-
-
 def contact(request):
        
 

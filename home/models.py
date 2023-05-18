@@ -28,7 +28,7 @@ class Product(models.Model):
     pricebasic = models.CharField(null=True, blank=True,max_length=200)
     pricepro = models.CharField(null=True, blank=True,max_length=200)
     pricelifetime = models.CharField(null=True, blank=True,max_length=200)
-    
+    inputs = models.JSONField(null=True, blank=True)
     date = models.DateField(auto_now_add=True,null=True, blank=True)
     metaquotes = models.CharField(max_length=200,null=True, blank=True)
     backtest1 = models.ImageField(null=True,blank=True)
