@@ -81,3 +81,10 @@ def updateprofile(request):
 			return JsonResponse({'msg':'Success'})
 		else:
 			return JsonResponse({'msg':'err'})
+def ideas(request):
+    products = Product.objects.all()
+    blog_category = BlogCategory.objects.all()
+    posts = Post.objects.all()
+    posts = sorted(posts, key=lambda x: x.date, reverse=True)
+    comments = Comment.objects.all()
+    return render(request, 'ideas.html', {'posts':posts,'comments':comments,'cat':blog_category,'products':products})

@@ -24,5 +24,6 @@ urlpatterns = [
         name="password_reset_confirm",
     ),
     path('updateprofile/',views.updateprofile, name='updateprofile'),
+    path('ideas', views.ideas , name="ideas"),
 
 ]

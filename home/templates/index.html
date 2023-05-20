@@ -12,7 +12,7 @@
         <h1>Transform Your Trading with Our AI-Powered Solutions</h1>
         <h2>Maximize Your Profits with Our Innovative Trading Tools</h2>
         <div class="d-flex justify-content-center justify-content-lg-start">
-          <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn-get-started scrollto">Get Started</a>
           <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i
               class="bi bi-play-circle"></i><span>Watch Video</span></a>
         </div>
@@ -146,48 +146,6 @@
     </div>
   </section><!-- End Cta Section -->
 
-  <!-- ======= Portfolio Section ======= -->
-  <section id="portfolio" class="portfolio">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-title">
-        <h2>Ideas</h2>
-        <p>Trade ideas
-          /
-          Educational ideas
-          /
-          Video ideas
-
-          & more</p>
-      </div>
-
-      <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-        <li data-filter="*" class="filter-active">All</li>
-        {% for a in cat %}
-        <li data-filter=".filter-{{a.number}}">{{a.name}}</li>
-        {% endfor %}
-      </ul>
-
-      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-
-        {% for a in posts %}
-        <div class="col-lg-4 col-md-6 portfolio-item filter-{{a.category.number}}">
-          <div class="portfolio-img"><img src="{{a.imageURL}}" class="img-fluid" alt="{{a.short_info}}"></div>
-          <div class="portfolio-info">
-            <h4>{{a.title}}</h4>
-            <p> {{a.short_info}}</p>
-            <a href="{{a.video_link}}" class="portfolio-lightbox preview-link" title="{{a.title}}"><i
-                class="bx bx-plus"></i></a>
-            <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-
-    </div>
-  </section><!-- End Portfolio Section -->
 
 
 

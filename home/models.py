@@ -118,3 +118,12 @@ class Message(models.Model):
 
     def __str__(self):
         return self.subject
+    
+
+class Comment(models.Model):
+    post = models.OneToOneField(Post,on_delete=models.CASCADE)        
+    customer = models.OneToOneField(Customer,on_delete=models.CASCADE)
+    comment = models.TextField()
+    def __str__(self):
+        return self.customer
+
