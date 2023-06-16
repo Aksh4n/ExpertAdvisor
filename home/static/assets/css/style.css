@@ -347,6 +347,7 @@ font-family:fantasy;
 .navbar-mobile .getstarted:focus {
   margin: 15px;
   color: #162745;
+  text-align: center;
 }
 
 .navbar-mobile .dropdown ul {

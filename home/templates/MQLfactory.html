@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+ <!-- ======= Breadcrumbs ======= -->
+ <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>MQL Programming</li>
+      </ol>
+      <h2>Turn your strategy to an Expert Advisor</h2>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Expert Factory</h2>
+        <p>We can make an Expert-Advisors based on your strategy at it's finest shape</p>
+      </div>
+      <div class="portfolio-description" style="text-align: justify;">
+        <h2>General purpose</h2>
+
+        <p>
+            Welcome to our expert advisor service! We specialize in creating custom expert advisors based on your unique trading strategy. Our team of experienced MQL4 and MQL5 programmers will work closely with you to develop an expert advisor that meets your specific needs.
+
+            Our pricing is based on the complexity of your strategy. Simple strategies start at $300, while more complex strategies may cost up to $3000. Our goal is to provide you with a high-quality expert advisor that can help you achieve your trading goals.
+            
+            If you're interested in our expert advisor service, please contact us to discuss your strategy and pricing options. We look forward to working with you!     
+           </p>
+
+           <h2>Please fill this form:</h2>
+
+      </div>
+
+<hr>
+
+      <div class="row justify-content-center">
+
+
+        <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+          <form id="contact-form" action="{% url 'contact' %}" method="post" role="form" class="php-email-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name</label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="name">Your Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="{{ user.email }}" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject" value="Expert Ordering" readonly>
+            </div>
+            <div class="form-group">
+              <label for="name">Message</label>
+              <textarea class="form-control" name="message" rows="10" required></textarea>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="text-center">
+              <button style="background-color: #5c1a60;" type="submit">Send Message</button>
+            </div>
+            {% else %}
+            <div class="text-center">
+              <button style="background-color: #5c1a60;" type="submit" disabled>You need to login first to send us a
+                message</button>
+            </div>
+            {% endif %}
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Contact Section -->
+
+{% endblock content %}

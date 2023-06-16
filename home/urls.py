@@ -10,6 +10,7 @@ urlpatterns = [
     path("login/", views.login_user, name="login"),
     path("logout_user", views.logout_user, name="logout"),
     path("profile/", views.profile, name="profile"),
+    path("MQL/", views.MQL, name="MQL"),
     path(
         "password-reset/", auth_views.PasswordResetView.as_view(), name="password_reset"
     ),
@@ -23,7 +24,9 @@ urlpatterns = [
         auth_views.PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
     ),
-    path('updateprofile/',views.updateprofile, name='updateprofile'),
-    path('ideas', views.ideas , name="ideas"),
-
+    path("updateprofile/", views.updateprofile, name="updateprofile"),
+    path("ideas", views.ideas, name="ideas"),
+    #path('initiate-payment/', views.initiate_payment, name='initiate_payment'),
+    #path('get-product-details/<int:product_id>/', views.get_product_details, name='get_product_details'),
+    #path('payment-callback/', views.payment_callback, name='payment_callback'),
 ]

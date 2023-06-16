@@ -135,3 +135,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+NOWPAYMENTS_API_KEY = '6QW5RCW-HW7MBKQ-JFD823E-1527K1S'
+NOWPAYMENTS_IPN_SECRET = 'qH768SfNdWhaIM7x27y/Iek5vTqzZ7pB'

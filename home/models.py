@@ -127,3 +127,12 @@ class Comment(models.Model):
     def __str__(self):
         return self.customer
 
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    order_id = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+    email = models.EmailField()
+    nowpayments_response = models.JSONField(null=True, blank=True)
+    def __str__(self):
+        return self.email

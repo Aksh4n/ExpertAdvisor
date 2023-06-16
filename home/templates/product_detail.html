@@ -142,57 +142,164 @@
       <h2>Pricing</h2>
       <p> Choose your plan and recieve your AI Agent </p>
     </div>
+    <form id="payForm">
+      {% csrf_token %}
 
-    <div class="row">
+      <div class="row">
 
-      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="box">
-          <h3>Basic Plan</h3>
-          <h4><sup>$</sup>{{product.pricebasic}}<span>3 months</span></h4>
-          <ul>
-            <li><i class="bx bx-check"></i> Optimized parameters</li>
-            <li><i class="bx bx-check"></i>Risk management</li>
-            <li><i class="bx bx-check"></i> Recieving software updates</li>
-            <li><i class="bx bx-check"></i> Licensing for <strong>1</strong>  accounts</li>
-            <li class="na"><i class="bx bx-x"></i> <span>Priority support</span></li>
-          </ul>
-          <a href="#" class="buy-btn">Get Started</a>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="box">
+            <h3>Basic Plan</h3>
+            <h4><sup>$</sup>{{product.pricebasic}}<span>3 months</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i>Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates</li>
+              <li><i class="bx bx-check"></i> Licensing for <strong>1</strong> accounts</li>
+              <li class="na"><i class="bx bx-x"></i> <span>Priority support</span></li>
+            </ul>
+            {% if user.is_authenticated %}
+
+            <button class="buy-btn" id="payButton" type="submit" data-plan="basic">Buy Now!</button>
+            {% else %}
+            <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="buy-btn">Sign in!</a>
+            {% endif %}
+          </div>
         </div>
-      </div>
 
-      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-        <div class="box featured">
-          <h3>Pro Plan</h3>
-          <h4><sup>$</sup>{{product.pricepro}}<span>6 month</span></h4>
-          <ul>
-            <li><i class="bx bx-check"></i> Optimized parameters</li>
-            <li><i class="bx bx-check"></i> Risk management</li>
-            <li><i class="bx bx-check"></i> Recieving software updates</li>
-            <li><i class="bx bx-check"></i> Licensing for <strong>2</strong> accounts</li>
-            <li><i class="bx bx-check"></i> Priority support</li>
-          </ul>
-          <a href="#" class="buy-btn">Get Started</a>
+        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="box featured">
+            <h3>Pro Plan</h3>
+            <h4><sup>$</sup>{{product.pricepro}}<span>6 month</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i> Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates</li>
+              <li><i class="bx bx-check"></i> Licensing for <strong>2</strong> accounts</li>
+              <li><i class="bx bx-check"></i> Priority support</li>
+            </ul>
+            {% if user.is_authenticated %}
+
+            <button class="buy-btn" id="payButton" type="submit" data-plan="pro">Buy Now!</button>
+            {% else %}
+            <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="buy-btn">Sign in!</a>
+            {% endif %}
+          </div>
         </div>
-      </div>
 
-      <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-        <div class="box">
-          <h3>Premium Plan</h3>
-          <h4><sup>$</sup>{{product.pricelifetime}}<span>12 months</span></h4>
-          <ul>
-            <li><i class="bx bx-check"></i> Optimized parameters</li>
-            <li><i class="bx bx-check"></i> Risk management</li>
-            <li><i class="bx bx-check"></i> Recieving software updates </li>
-            <li><i class="bx bx-check"></i> Licensing for <strong>4</strong> accounts</li>
-            <li><i class="bx bx-check"></i> Priority support</li>
-          </ul>
-          <a href="#" class="buy-btn">Get Started</a>
+        <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+          <div class="box">
+            <h3>Premium Plan</h3>
+            <h4><sup>$</sup>{{product.pricelifetime}}<span>12 months</span></h4>
+            <ul>
+              <li><i class="bx bx-check"></i> Optimized parameters</li>
+              <li><i class="bx bx-check"></i> Risk management</li>
+              <li><i class="bx bx-check"></i> Recieving software updates </li>
+              <li><i class="bx bx-check"></i> Licensing for <strong>4</strong> accounts</li>
+              <li><i class="bx bx-check"></i> Priority support</li>
+            </ul>
+            {% if user.is_authenticated %}
+
+            <button class="buy-btn" id="payButton" type="submit" data-plan="lifetime">Buy Now!</button>
+            {% else %}
+            <a data-bs-toggle="modal" href="#exampleModalToggle" role="button" class="buy-btn">Sign in!</a>
+            {% endif %}
+
+            <input type="hidden" name="order_id" id="order_id_input">
+            <input type="hidden" name="plan" id="plan" value="pro">
+
+          </div>
         </div>
+
       </div>
-
-    </div>
-
+    </form>
   </div>
 </section><!-- End Pricing Section -->
+<script>
+  const pay = document.getElementById('payForm');
+  const orderIdInput = document.getElementById('order_id_input');
 
+  pay.addEventListener("submit", submitHandler);
+
+  function submitHandler(e) {
+    e.preventDefault();
+
+    // Get the selected plan from the clicked button or link
+    const plan = e.submitter.getAttribute('data-plan');
+
+    // Set the plan value in the hidden input field
+    document.getElementById('plan').value = plan;
+    const serializedData = $(pay).serialize();
+
+    // Make the AJAX request
+    $.ajax({
+      type: 'POST',
+      url: '{% url "product_detail" product.id %}',
+      data: serializedData,
+      dataType: 'json',
+      success: function (data) {
+        var price = data.price;
+        const des = data.descrip;
+        const price2 = data.price2;
+        const price3 = data.price3;
+        const apikey = data.api;
+
+        if (data.plan === 'basic') { price = price; }
+        if (data.plan === 'pro') { price = price2; }
+        if (data.plan === 'lifetime') { price = price3; }
+
+        // Attach click event handler to the payButton
+
+        const payload = {
+
+          price_amount: price,
+          price_currency: 'usd',
+          order_id: orderIdInput.value,
+          order_description: des,
+          ipn_callback_url: 'https://nowpayments.io',
+          success_url: 'https://nowpayments.io',
+          cancel_url: 'https://nowpayments.io'
+        };
+
+        const settings = {
+          url: 'https://api.nowpayments.io/v1/invoice',
+          method: 'POST',
+          headers: {
+            'x-api-key': apikey,
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(payload),
+          success: function (response) {
+            const paymentUrl = response.invoice_url;
+            window.location.href = paymentUrl;
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        };
+
+        $.ajax(settings);
+
+
+        console.log('Redirecting to the payment page');
+      }
+    });
+  }
+
+  function generateOrderId() {
+    // Implement your logic to generate a unique order ID
+    // For example, you can combine a timestamp with a random number
+    return Date.now() + '-' + Math.floor(Math.random() * 10000);
+  }
+</script>
+<script>
+
+  window.onload = function () {
+    // Generate the order ID
+    const orderId = generateOrderId();
+
+    // Set the order ID as the value of the hidden input field
+    orderIdInput.value = orderId;
+  };
+</script>
 {% endblock content %}
