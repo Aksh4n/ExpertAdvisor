@@ -48,6 +48,8 @@ def product_detail(request, product_id):
             order_id=order_id,
             status='Pending',
             email=request.user.email,
+            product = product.name,
+            plan = request.POST.get('plan'),
             nowpayments_response=None
         )
         order.save()

@@ -71,7 +71,7 @@
                                 <div class="message-box">
                                     {% for message in user.received_messages.all %}
                                     <div class="message">
-                                        <p>{{ message.timestamp }}</p>
+                                        <p style="background-color: rgba(13, 32, 82, 0.785); color: #f4f5f7;"> &nbsp;{{ message.timestamp }}</p>
 
                                         <p><strong>From:</strong> {{ message.sender.username }}</p>
 

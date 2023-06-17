@@ -133,6 +133,8 @@ class Order(models.Model):
     order_id = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     email = models.EmailField()
+    product = models.CharField(max_length=100,null=True, blank=True)
+    plan = models.CharField(max_length=100,null=True, blank=True)
     nowpayments_response = models.JSONField(null=True, blank=True)
     def __str__(self):
         return self.email

@@ -218,8 +218,8 @@
 <script>
   const pay = document.getElementById('payForm');
   const orderIdInput = document.getElementById('order_id_input');
-
-  pay.addEventListener("submit", submitHandler);
+  const payButtons = document.getElementsByClassName('buy-btn');
+    pay.addEventListener("submit", submitHandler);
 
   function submitHandler(e) {
     e.preventDefault();
@@ -231,6 +231,12 @@
     document.getElementById('plan').value = plan;
     const serializedData = $(pay).serialize();
 
+    // Disable the payButton and change its text to "Loading..."
+    for (let i = 0; i < payButtons.length; i++) {
+        payButtons[i].disabled = true;
+        payButtons[i].classList.add('loading');
+        payButtons[i].textContent = 'Loading...';
+      }
     // Make the AJAX request
     $.ajax({
       type: 'POST',
@@ -278,9 +284,29 @@
           }
         };
 
-        $.ajax(settings);
-
-
+        // Make the AJAX request and handle errors
+        $.ajax(settings).fail(function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR);
+          if (jqXHR.status === 0) {
+            // Show an error message to the user
+            const errorMessage = 'There was a problem with the network connection. Please check your internet connection and try again.(try using a vpn)';
+            alert(errorMessage);
+            for (let i = 0; i < payButtons.length; i++) {
+                payButtons[i].disabled = false;
+                payButtons[i].classList.remove('loading');
+                payButtons[i].textContent = 'Buy Now!';
+              }
+          } else if (textStatus === 'error' && errorThrown === 'timeout') {
+            // Show a message to the user to use a VPN
+            const vpnMessage = 'Connection timed out. Please try again using a VPN.';
+            alert(vpnMessage);
+            for (let i = 0; i < payButtons.length; i++) {
+                payButtons[i].disabled = false;
+                payButtons[i].classList.remove('loading');
+                payButtons[i].textContent = 'Buy Now!';
+              }
+          }
+        });
         console.log('Redirecting to the payment page');
       }
     });
